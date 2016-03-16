@@ -12,7 +12,7 @@ import React, {
 } from 'react-native';
 var Test1 = require('./Test1');
 
-class HelloWorld1 extends Component {
+class health_manger extends Component {
   render() {
     return (
       <View style={styles.container}>
@@ -50,4 +50,4 @@ const styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('HelloWorld1', () => HelloWorld1);
+AppRegistry.registerComponent('health_manger', () => health_manger);
