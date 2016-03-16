@@ -11,12 +11,12 @@ import React, {
   View
 } from 'react-native';
 
-class Head extends Component {
+class Head1 extends Component {
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          健康管理卫士
+          健康管理
         </Text>
       </View>
     );
@@ -38,4 +38,4 @@ const styles = StyleSheet.create({
   },
 });
 
-module.exports = Head;
+module.exports = Head1;

@@ -16,7 +16,7 @@ class MyHealth extends Component {
   render() {
     return (
       <View style={styles.container}>
-      
+
         <View style={styles.view}>
         <Image source={require('./image/base_health.png')}
         style={styles.imageIcon} />

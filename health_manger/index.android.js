@@ -90,7 +90,6 @@ class health_manger  extends Component {
             onPress={() => {
               _navigator.push({title:'MainPage',id:'page'})
               ToastAndroid.show('启动应用', ToastAndroid.SHORT);
-
           }}
           text="启动应用"
           style={styles.button1}  />
