@@ -3,24 +3,70 @@
  * https://github.com/facebook/react-native
  */
 'use strict';
-
+import NButton from '../commonview/NButton';
+import Md5Uitl from '../util/Md5Uitl';
+import Util from '../util/Util';
+import Global from '../util/Global';
+import NetUitl from '../net/NetUitl';
 import React, {
   AppRegistry,
   Component,
   StyleSheet,
   Text,
   TextInput,
+  ToastAndroid,
+  crypto,
   View
 } from 'react-native';
 
-import Button from './app/common_view/Button';
-
-
-class Login extends Component {
+class Login extends React.Component {
 
 constructor(props){
     super(props);
-    this.state = {text:''}
+    this.state = {text:'',
+    phone:'',
+    pwd:'',};
+    this.login = this.login.bind(this);
+}
+
+checkPhone(phone){
+    return  phone.length>6;
+  }
+
+checkPWD(pwd){
+    return  pwd.length>4;
+  }
+
+login(){
+  let phone = this.state.phone;
+  let pwd = this.state.pwd;
+  alert(phone);
+ if(!this.checkPhone(phone)){
+      alert("请输入正确的手机号码");
+      return;
+  }
+  if(!this.checkPWD(pwd)){
+      alert("验证码为4位数字");
+      return;
+  }
+
+  let url = Global.LOGIN;
+  let map = new Map()
+  map.set('username',phone);
+  map.set('password',pwd);
+  map.set('orgid','0010000');
+  let sx = Util.mapToJson(Util.tokenAndKo(map));
+  NetUitl.post(url,sx,function (set){
+    switch (set.retCode) {
+      case "0000":
+          alert("登录成功");
+        break;
+     case "0001":
+        alert("登录失败");
+          break;
+      default:
+    }
+  });
 }
 
   render() {
@@ -36,6 +82,7 @@ constructor(props){
               autoFocus={true}
               underlineColorAndroid={'transparent'}
               textAlign='center'
+              onChangeText={(text) => this.setState({phone: text})}
           />
           <View
               style={{height:1,backgroundColor:'#f4f4f4'}}
@@ -47,14 +94,12 @@ constructor(props){
               underlineColorAndroid={'transparent'}
               secureTextEntry={true}
               textAlign='center'
+              onChangeText={(text) => this.setState({pwd: text})}
           />
-          <NavButton
-          onPress={() => {
-            _navigator.push({title:'MainPage',id:'page'})
-            ToastAndroid.show('启动应用', ToastAndroid.SHORT);
-        }}
-        text="启动应用"
-        style={styles.button1}  />
+        <NButton
+          onPress={this.login}
+          text="登录"
+         style={{width:200}}  />
       </View>
     );
   }

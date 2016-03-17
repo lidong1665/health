@@ -11,7 +11,7 @@ import React, {
   View
 } from 'react-native';
 
-class Head1 extends Component {
+class Head extends Component {
   render() {
     return (
       <View style={styles.container}>
@@ -38,4 +38,4 @@ const styles = StyleSheet.create({
   },
 });
 
-module.exports = Head1;
+module.exports = Head;

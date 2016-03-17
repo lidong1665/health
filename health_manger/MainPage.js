@@ -20,8 +20,8 @@ import MyHealth from './MyHealth';
 import HealthTools from './HealthTools';
 import Login from './app/page/Login';
 
-import Head from './Head1';
-
+import Head from './Head';
+import NButton from './app/commonview/NButton';
 const MY_HEALTH = '我的健康';
 const MY_HEALTH_NORMAL = require('./image/my_health_un.png');
 const MY_HEALTH_FOCUS = require('./image/my_health_on.png');

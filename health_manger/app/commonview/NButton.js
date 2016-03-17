@@ -1,20 +1,20 @@
+
+
+
+
+
 'use strict';
 import React, {
-  AppRegistry,
   Component,
   StyleSheet,
   Text,
-  Navigator,
-  TouchableHighlight,
   TouchableOpacity,
-  ToastAndroid,
-   ViewPagerAndroid,
-   Image,
+  TouchableHighlight,
   View
 } from 'react-native';
 var _navigator;
 
-class Button extends React.Component {
+class NButton extends React.Component {
 
    render() {
      return (
@@ -36,11 +36,11 @@ class Button extends React.Component {
     marginLeft: 15,
   },
   button: {
-    backgroundColor: 'white',
+    backgroundColor: 'green',
     padding: 15,
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: '#CDCDCD',
     alignSelf:'center',
   },
  });
-module.exports = Button;
+module.exports = NButton;

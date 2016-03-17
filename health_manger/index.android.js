@@ -14,26 +14,13 @@ import React, {
   TouchableHighlight,
   TouchableOpacity,
   ToastAndroid,
-   ViewPagerAndroid,
-   Image,
+  ViewPagerAndroid,
+  Image,
   View
 } from 'react-native';
 var _navigator;
 var MainPage = require('./MainPage');
-class NavButton extends React.Component {
-
-   render() {
-     return (
-       <TouchableHighlight
-        style={styles.button}
-        underlayColor="#B5B5B5"
-        onPress={this.props.onPress}>
-         <Text style={styles.buttonText}>{this.props.text}</Text>
-      </TouchableHighlight>
-     );
-   }
- }
-
+import NButton from './app/commonview/NButton';
 class health_manger  extends Component {
    /**
    *实例化时候调用，以后不再调用，初始化固定值，以后不再变，如静态的数据源。
@@ -86,7 +73,7 @@ class health_manger  extends Component {
       <View style={styles.pageStyle}>
           <Image source={require('./image/guide3.png')}
             style={styles.image} >
-            <NavButton
+            <NButton
             onPress={() => {
               _navigator.push({title:'MainPage',id:'page'})
               ToastAndroid.show('启动应用', ToastAndroid.SHORT);
