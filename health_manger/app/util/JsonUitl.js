@@ -5,7 +5,7 @@ import React, {
   Component,
 } from 'react-native';
 /**
-*Md5加密的实现
+*JsonUitl的实现
 */
 class JsonUitl extends React.Component {
 
