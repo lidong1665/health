@@ -56,7 +56,7 @@ login(){
   map.set('password',pwd);
   map.set('orgid','0010000');
   let sx = Util.mapToJson(Util.tokenAndKo(map));
-  NetUitl.post(url,sx,function (set){
+  NetUitl.postFrom(url,sx,function (set){
     switch (set.retCode) {
       case "0000":
           alert("登录成功");

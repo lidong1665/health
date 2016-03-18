@@ -8,7 +8,7 @@ import React, {
 class NetUitl extends React.Component {
 
   //post请求
-  static  post(url, data, callback) {
+  static  postFrom(url, data, callback) {
       var fetchOptions = {
         method: 'POST',
         headers: {
@@ -24,6 +24,27 @@ class NetUitl extends React.Component {
         callback(JSON.parse(responseText));
       }).done();
     }
+    //
+    static postJson (url, data, callback) {
+        var fetchOptions = {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            //json形式
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        };
+
+      fetch(url, fetchOptions)
+        .then((response) => response.text())
+        .then((responseText) => {
+          callback(JSON.parse(responseText));
+        }).done();
+      }
+
+
+
 
     //get请求
   static  get(url, callback) {
