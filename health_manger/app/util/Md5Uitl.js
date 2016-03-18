@@ -4,7 +4,9 @@
 import React, {
   Component,
 } from 'react-native';
-
+/**
+*Md5加密的实现
+*/
 class Md5Uitl extends React.Component {
 
   static md5(data){

@@ -28,22 +28,7 @@ static getTime(){
 static getPswId(){
   return '0010000app';
 }
-/**
-*字符串转json
-*/
-static stringToJson(data){
-  return JSON.parse(data);
-}
-/**
-*json转字符串
-*/
-static jsonToString(data){
-  return JSON.stringify(data);
-}
 
-static mapToJson(map) {
-return JSON.stringify(Util.strMapToObj(map));
-}
 
 static tokenAndKo(map){
   let time = Util.getTime();
@@ -53,13 +38,6 @@ static tokenAndKo(map){
   return map;
 }
 
-static strMapToObj(strMap){
-  let obj= Object.create(null);
-  for (let[k,v] of strMap) {
-    obj[k] = v;
-  }
-  return obj;
-}
 
 }
 

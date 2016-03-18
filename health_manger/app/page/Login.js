@@ -8,6 +8,8 @@ import Md5Uitl from '../util/Md5Uitl';
 import Util from '../util/Util';
 import Global from '../util/Global';
 import NetUitl from '../net/NetUitl';
+import JsonUitl from '../net/JsonUitl';
+
 import React, {
   AppRegistry,
   Component,
@@ -55,7 +57,7 @@ login(){
   map.set('username',phone);
   map.set('password',pwd);
   map.set('orgid','0010000');
-  let sx = Util.mapToJson(Util.tokenAndKo(map));
+  let sx = JsonUitl.mapToJson(Util.tokenAndKo(map));
   NetUitl.postFrom(url,sx,function (set){
     switch (set.retCode) {
       case "0000":
