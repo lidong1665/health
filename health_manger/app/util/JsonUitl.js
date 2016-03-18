@@ -10,13 +10,14 @@ import React, {
 class JsonUitl extends React.Component {
 
   /**
-  *字符串转json
+  *
+  * json转字符串
   */
   static stringToJson(data){
     return JSON.parse(data);
   }
   /**
-  *json转字符串
+  *字符串转json
   */
   static jsonToString(data){
     return JSON.stringify(data);
@@ -25,13 +26,13 @@ class JsonUitl extends React.Component {
   *map转换为json
   */
   static mapToJson(map) {
-  return JSON.stringify(Util.strMapToObj(map));
+  return JSON.stringify(JsonUitl.strMapToObj(map));
   }
   /**
   *json转换为map
   */
   static jsonToMap(jsonStr){
-    return  objToStrMap(JSON.parse(jsonStr));
+    return  JsonUitl.objToStrMap(JSON.parse(jsonStr));
   }
 
 
