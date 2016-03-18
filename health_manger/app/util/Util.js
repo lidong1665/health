@@ -7,7 +7,9 @@ import React, {
 
 
 import Md5Uitl from './Md5Uitl';
-
+/**
+*工具的实现
+*/
 class Util extends React.Component {
 
  static getToken(time) {
