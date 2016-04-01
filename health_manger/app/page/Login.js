@@ -8,7 +8,7 @@ import Md5Uitl from '../util/Md5Uitl';
 import Util from '../util/Util';
 import Global from '../util/Global';
 import NetUitl from '../net/NetUitl';
-import JsonUitl from '../net/JsonUitl';
+import JsonUitl from '../util/JsonUitl';
 
 import React, {
   AppRegistry,
