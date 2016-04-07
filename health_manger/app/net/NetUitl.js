@@ -4,7 +4,8 @@
 import React, {
   Component,
 } from 'react-native';
-
+import Util from '../util/Util';
+import Global from '../util/Global';
 class NetUitl extends React.Component {
 
   //post请求
@@ -44,8 +45,6 @@ class NetUitl extends React.Component {
       }
 
 
-
-
     //get请求
   static  get(url, callback) {
       fetch(url)
@@ -62,6 +61,18 @@ class NetUitl extends React.Component {
           description+=i+" = "+property+"\n";
        }
        alert(description);
+    }
+
+    static  url_healthmonitbase(){
+      const time= Util.getTime();
+      const s=  Global.HOST+"/healthmonitbase?customerid=0010000022464&density=480&ko=0000&time="+time+"&token="+Util.getToken(time);
+      return s ;
+      }
+
+   static url_healthmonitnorm(checkItemCode){
+      const time= Util.getTime();
+      const  ul = Global.HOST+"/healthmonitnorm?checkItemCode=" + checkItemCode +"&customerid=0010000022464&sexid=1&currentPage=1&density=480&ko=0000&time="+time+"&token="+Util.getToken(time);
+      return ul;
     }
 
 }

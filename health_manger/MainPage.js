@@ -13,13 +13,18 @@ import React, {
   Navigator,
   TouchableOpacity,
   ToastAndroid,
+  WebView,
   View
 } from 'react-native';
 import TabNavigator from 'react-native-tab-navigator';
+import ScrollableTabView  from 'react-native-scrollable-tab-view';
 import MyHealth from './MyHealth';
 import HealthTools from './HealthTools';
+import HealthSQ  from './HealthSQ';
 import Login from './app/page/Login';
-
+import Global from './app/util/Global';
+import Util from './app/util/Util';
+import NetUitl from './app/net/NetUitl';
 import Head from './Head';
 import NButton from './app/commonview/NButton';
 const MY_HEALTH = '我的健康';
@@ -38,6 +43,7 @@ const MY_HEALTH_ACCOUNT = '我的账号';
 const MY_HEALTH_ACCOUNT_NORMAL = require('./image/my_account_un.png');
 const MY_HEALTH_ACCOUNT_FOCUS = require('./image/my_account_on.png');
 var _navigator;
+var DEFAULT_URL = "http://www.lcode.org";
 
 class MyAccount extends React.Component{
 
@@ -124,7 +130,7 @@ class MyAccount extends React.Component{
                   {this._renderTabItem(MY_HEALTH_NORMAL, MY_HEALTH_FOCUS, MY_HEALTH,<MyHealth/>)}
                   {this._renderTabItem(MY_HEALTH_CONSULT_NORMAL, MY_HEALTH_CONSULT_FOCUS, MY_HEALTH_CONSULT, MainPage._createChildView(MY_HEALTH_CONSULT))}
                   {this._renderTabItem(MY_HEALTH_TOOLS_NORMAL, MY_HEALTH_TOOLS_FOCUS, MY_HEALTH_TOOLS, <HealthTools/>)}
-                  {this._renderTabItem(MY_HEALTH_COMMUNITY_NORMAL, MY_HEALTH_COMMUNITY_FOCUS, MY_HEALTH_COMMUNITY, MainPage._createChildView(MY_HEALTH_COMMUNITY))}
+                  {this._renderTabItem(MY_HEALTH_COMMUNITY_NORMAL, MY_HEALTH_COMMUNITY_FOCUS, MY_HEALTH_COMMUNITY, <HealthSQ/>)}
                   {this._renderTabItem(MY_HEALTH_ACCOUNT_NORMAL, MY_HEALTH_ACCOUNT_FOCUS, MY_HEALTH_ACCOUNT,<MyAccount/>)}
               </TabNavigator>
           </View >);
@@ -154,6 +160,9 @@ class MyAccount extends React.Component{
 
 
 const styles = StyleSheet.create({
+  webview_style:{
+       backgroundColor:'#00ff00',
+    },
     tab: {
         height: 60,
         backgroundColor: '#303030',
