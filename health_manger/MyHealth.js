@@ -9,15 +9,21 @@ import React, {
   StyleSheet,
   Text,
   Image,
+  ScrollView,
   View
 } from 'react-native';
-
+import Head from './Head';
+import TopScreen from './TopScreen';
 class MyHealth extends Component {
-  
+
   render() {
     return (
       <View style={styles.container}>
+         <Head/>
 
+          <ScrollView key={'scrollView'}
+          horizontal={false}
+          scrollEnabled= {true}>
         <View style={styles.view}>
         <Image source={require('./image/base_health.png')}
         style={styles.imageIcon} />
@@ -66,6 +72,7 @@ class MyHealth extends Component {
          style={styles.imageArr} />
         </View>
          <View style={styles.line}/>
+         </ScrollView>
       </View>
     );
   }
@@ -107,7 +114,7 @@ const styles = StyleSheet.create({
     height:20,
     width:20,
     alignSelf:'center',
-    marginLeft:120,
+    marginLeft:170,
   },
 
 

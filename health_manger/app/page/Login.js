@@ -48,7 +48,7 @@ login(){
       return;
   }
   if(!this.checkPWD(pwd)){
-      alert("验证码为4位数字");
+      alert("密码为大于6位数字");
       return;
   }
 

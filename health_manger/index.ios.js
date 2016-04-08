@@ -10,7 +10,6 @@ import React, {
   Text,
   View
 } from 'react-native';
-var Test1 = require('./Test1');
 
 class health_manger extends Component {
   render() {

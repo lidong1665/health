@@ -8,14 +8,21 @@ import React, {
   Component,
   StyleSheet,
   Text,
+  ScrollView,
   Image,
   View
 } from 'react-native';
-
+import Head from './Head';
 class HealthTools extends Component {
   render() {
     return (
       <View style={styles.container}>
+      <Head/>
+        <ScrollView key={'scrollView'}
+        horizontal={false}
+        showsVerticalScrollIndicator={true}
+        scrollEnabled= {true}
+        style = {styles.contentContainer} >
        <View style={styles.view}>
         <Image source={require('./image/tool_lxtz.png')}
           style={styles.imageIcon} />
@@ -93,6 +100,18 @@ class HealthTools extends Component {
          style={styles.imageArr} />
         </View>
         <View style={styles.line}/>
+        <View style={styles.view}>
+        <Image source={require('./image/tool_ydnh.png')}
+          style={styles.imageIcon} />
+         <View style={styles.view2}>
+         <Text style={styles.t0}>运动能耗计算</Text>
+         <Text style={styles.t1}>用食物重量图谱可以帮助你更加直观的了解各种常用...   </Text>
+         </View>
+         <Image source={require('./image/arrows_right.png')}
+         style={styles.imageArr} />
+        </View>
+        <View style={styles.line}/>
+          </ScrollView >
       </View>
     );
   }
@@ -144,6 +163,9 @@ const styles = StyleSheet.create({
     alignSelf:'center',
     backgroundColor: '#F8F8FF',
   },
+  contentContainer: {
+                  paddingVertical: 20
+              } ,
 });
 
 module.exports = HealthTools;

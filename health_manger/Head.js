@@ -26,15 +26,15 @@ class Head extends Component {
 const styles = StyleSheet.create({
   container: {
     flexDirection:'row',
+    alignItems: 'stretch',
+    height:50,
+    alignSelf:'stretch',
+    backgroundColor:'#219772',
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#3CB371',
-    height:40,
   },
   welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+    fontSize:20,
+    alignSelf:'center',
   },
 });
 

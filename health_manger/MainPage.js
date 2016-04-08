@@ -10,6 +10,7 @@ import React, {
   StyleSheet,
   Text,
   Image,
+  Dimensions,
   Navigator,
   TouchableOpacity,
   ToastAndroid,
@@ -21,11 +22,14 @@ import ScrollableTabView  from 'react-native-scrollable-tab-view';
 import MyHealth from './MyHealth';
 import HealthTools from './HealthTools';
 import HealthSQ  from './HealthSQ';
+import MyAccount  from './MyAccount';
+
 import Login from './app/page/Login';
 import Global from './app/util/Global';
 import Util from './app/util/Util';
 import NetUitl from './app/net/NetUitl';
 import Head from './Head';
+import TopScreen from './TopScreen';
 import NButton from './app/commonview/NButton';
 const MY_HEALTH = '我的健康';
 const MY_HEALTH_NORMAL = require('./image/my_health_un.png');
@@ -43,54 +47,14 @@ const MY_HEALTH_ACCOUNT = '我的账号';
 const MY_HEALTH_ACCOUNT_NORMAL = require('./image/my_account_un.png');
 const MY_HEALTH_ACCOUNT_FOCUS = require('./image/my_account_on.png');
 var _navigator;
-var DEFAULT_URL = "http://www.lcode.org";
-
-class MyAccount extends React.Component{
-
-  constructor(props) {
-         super(props);
-     }
-
-   _onPressButton(){
-   ToastAndroid.show("---",ToastAndroid.SHORT);
-    _navigator.push({title:'Login',id:'page'})
-   }
-
-  render() {
-    return (
-      <View style={styles.container1}>
-        <TouchableOpacity onPress={this._onPressButton}>
-        <View style={styles.view}>
-        <Image source={require('./image/base_health.png')}
-        style={styles.imageIcon} />
-        <Text style={styles.t0}>登      录</Text>
-         <Image source={require('./image/arrows_right.png')}
-         style={styles.imageArr} />
-        </View>
-        </TouchableOpacity>
-        <View style={styles.line}/>
-        <TouchableOpacity onPress={this._onPressButton}>
-        <View style={styles.view}>
-        <Image source={require('./image/base_health.png')}
-        style={styles.imageIcon} />
-        <Text style={styles.t0}>注      册</Text>
-         <Image source={require('./image/arrows_right.png')}
-         style={styles.imageArr} />
-        </View>
-        </TouchableOpacity>
-        <View style={styles.line}/>
-      </View>
-    );
-  }
-}
-
+let tabBarHidden = false;
  class MainPage extends React.Component {
 
  constructor(props) {
         super(props);
-        this.state = {selectedTab: MY_HEALTH};
+        this.state = {selectedTab: MY_HEALTH,
+                      tabBarShow:true};
         this._renderTabItem =  this._renderTabItem.bind(this);
-        this.renderSceneAndroid = this.renderSceneAndroid.bind(this);
     }
     /**
     *img ；默认图标
@@ -111,6 +75,30 @@ class MyAccount extends React.Component{
         );
     }
 
+    _createChildView1(tag) {
+        let renderView;
+        switch (tag) {
+            case MY_HEALTH:
+                renderView = <MyHealth />;
+                break;
+            case MY_HEALTH_CONSULT:
+                renderView = <TopScreen />;
+                break;
+           case MY_HEALTH_TOOLS:
+                    renderView = <HealthTools />;
+                    break;
+            case MY_HEALTH_COMMUNITY:
+                renderView = <HealthSQ />;
+                break;
+            case MY_HEALTH_ACCOUNT:
+                renderView = <MyAccount />;
+                break;
+            default:
+                break;
+        }
+        return (<View style={styles.container}>{renderView}</View>)
+    }
+
     static _createChildView(tag) {
         return (
             <View style={{flex:1,backgroundColor:'#00baff',alignItems:'center',justifyContent:'center'}}>
@@ -119,40 +107,22 @@ class MyAccount extends React.Component{
         )
     }
 
-    /**
-    **/
-    renderSceneAndroid(route, navigator){
-      _navigator = navigator;
-      if(route.id === 'main'){
-        return(<View style={{flex: 1}}>
-             <Head/>
-              <TabNavigator hidesTabTouch={true} tabBarStyle={styles.tab}>
-                  {this._renderTabItem(MY_HEALTH_NORMAL, MY_HEALTH_FOCUS, MY_HEALTH,<MyHealth/>)}
-                  {this._renderTabItem(MY_HEALTH_CONSULT_NORMAL, MY_HEALTH_CONSULT_FOCUS, MY_HEALTH_CONSULT, MainPage._createChildView(MY_HEALTH_CONSULT))}
-                  {this._renderTabItem(MY_HEALTH_TOOLS_NORMAL, MY_HEALTH_TOOLS_FOCUS, MY_HEALTH_TOOLS, <HealthTools/>)}
-                  {this._renderTabItem(MY_HEALTH_COMMUNITY_NORMAL, MY_HEALTH_COMMUNITY_FOCUS, MY_HEALTH_COMMUNITY, <HealthSQ/>)}
-                  {this._renderTabItem(MY_HEALTH_ACCOUNT_NORMAL, MY_HEALTH_ACCOUNT_FOCUS, MY_HEALTH_ACCOUNT,<MyAccount/>)}
-              </TabNavigator>
-          </View >);
-      }
-
-      if(route.id === 'page'){
-        return (
-          <Login navigator={navigator} route={route}/>
-        );
-      }
-    }
-
     render(){
-       var renderScene = this.renderSceneAndroid;
-       var configureScence = this.configureScenceAndroid;
+      let {tabBarShow} = this.state;
+       console.log(tabBarShow);
       return (
-        <Navigator
-          debugOverlay={false}
-          initialRoute={{ title: 'Main', id:'main'}}
-          configureScence={{configureScence}}
-          renderScene={renderScene}
-        />
+        <View style={{flex: 1}}>
+              <TabNavigator hidesTabTouch={true}
+                    sceneStyle={{paddingBottom: 0}}
+                    tabBarStyle={tabBarShow ? styles.tabNav : styles.tabNavHide}
+                    overflow={'hidden'} >
+                  {this._renderTabItem(MY_HEALTH_NORMAL, MY_HEALTH_FOCUS, MY_HEALTH,this._createChildView1(MY_HEALTH))}
+                  {this._renderTabItem(MY_HEALTH_CONSULT_NORMAL, MY_HEALTH_CONSULT_FOCUS, MY_HEALTH_CONSULT, this._createChildView1(MY_HEALTH_CONSULT))}
+                  {this._renderTabItem(MY_HEALTH_TOOLS_NORMAL, MY_HEALTH_TOOLS_FOCUS, MY_HEALTH_TOOLS, this._createChildView1(MY_HEALTH_TOOLS))}
+                  {this._renderTabItem(MY_HEALTH_COMMUNITY_NORMAL, MY_HEALTH_COMMUNITY_FOCUS, MY_HEALTH_COMMUNITY, this._createChildView1(MY_HEALTH_COMMUNITY))}
+                  {this._renderTabItem(MY_HEALTH_ACCOUNT_NORMAL, MY_HEALTH_ACCOUNT_FOCUS, MY_HEALTH_ACCOUNT,this._createChildView1(MY_HEALTH_ACCOUNT))}
+              </TabNavigator>
+          </View >
       );
     }
   }
@@ -160,6 +130,21 @@ class MyAccount extends React.Component{
 
 
 const styles = StyleSheet.create({
+  container: {
+        flex: 1
+    },
+    tabNav: {
+        height: 60,
+        backgroundColor: '#FFF',
+        alignItems: 'center',
+        borderTopWidth: 0.5,
+        borderTopColor: '#E8E8E8'
+    },
+    tabNavHide: {
+        position: 'absolute',
+        top: Dimensions.get('window').height,
+        height: 0
+    },
   webview_style:{
        backgroundColor:'#00ff00',
     },
@@ -173,43 +158,6 @@ const styles = StyleSheet.create({
         height: 30,
         resizeMode: 'stretch',
         marginTop: 12.5
-    },
-    container1: {
-      flex: 1,
-      flexDirection:'column',
-      justifyContent: 'flex-start',
-      alignItems: 'flex-start',
-      backgroundColor: '#F5FCFF',
-    },
-    view:{
-      flexDirection:'row',
-      alignItems: 'stretch',
-      height:50,
-      alignSelf:'stretch',
-      backgroundColor: '#F8F8FF',
-    },
-    line:{
-     height:1,
-     alignSelf:'stretch',
-     backgroundColor: '#708090',
-    },
-    imageIcon:{
-      height:30,
-      width:30,
-      alignSelf:'center',
-      marginLeft:20,
-      marginRight:20,
-    },
-    t0:{
-      alignSelf:'center',
-      fontSize:20,
-    },
-
-    imageArr:{
-      height:20,
-      width:20,
-      alignSelf:'center',
-      marginLeft:150,
     },
 
 });

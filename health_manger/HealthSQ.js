@@ -8,6 +8,7 @@ import React, {
 } from 'react-native';
 import NetUitl from './app/net/NetUitl';
 import ScrollableTabView  from 'react-native-scrollable-tab-view';
+import Head from './Head';
 
 class HealthSQ extends Component {
 
@@ -18,6 +19,7 @@ class HealthSQ extends Component {
     render() {
         return (
       <View style={{flex:1}}>
+      <Head/>
         <ScrollableTabView>
         <WebView
                 tabLabel="个人体重"
